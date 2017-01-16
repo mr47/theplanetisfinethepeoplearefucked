@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  overflow: hidden;
+  background: url("/bg-stars-large.png");
+  background-size: cover;
+}
+.planet{
+  image-rendering: pixelated;
+}

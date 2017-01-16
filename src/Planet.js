@@ -14,13 +14,15 @@ class Planet extends React.Component {
             cubeRotation: new THREE.Euler(1.0, 0),
             light: {
                 direction: new THREE.Vector3(0, 0, 0),
-                position: new THREE.Vector3(5, 3, 40)
+                position: new THREE.Vector3(0, 0, 450)
             },
             position: {
                 globe: new THREE.Vector3(0, 0, 0),
-                glow: new THREE.Vector3(0, 31, 512),
+                glow: new THREE.Vector3(0, 53, 512),
                 backGlow: new THREE.Vector3(0, 15, -590)
-            }
+            },
+            glowOffset: new THREE.Vector2(0, 0.08)
+
         };
         this._onAnimate = () => {
             // we will get this callback every frame
@@ -61,8 +63,8 @@ class Planet extends React.Component {
                     far={1500}
                     position={this.cameraPosition}
                 />
-                <ambientLight color={0x333333} intensity={2} />
-                <directionalLight lookAt={this.state.light.direction} name="light" intensity={1} position={this.state.light.position}/>
+                <ambientLight color={0x333333} intensity={1} />
+                <directionalLight lookAt={this.state.light.direction} name="light" intensity={0.5} position={this.state.light.position}/>
                 <mesh
                     position={this.state.position.backGlow}
                 >
@@ -76,7 +78,7 @@ class Planet extends React.Component {
                 </mesh>
                 <mesh
                     rotation={this.state.cubeRotation}
-                    position={this.state.position.glob}
+                    position={this.state.position.globe}
                 >
                     <sphereGeometry
                         radius={296}
@@ -86,6 +88,7 @@ class Planet extends React.Component {
 
                     <meshPhongMaterial
                         bumpScale={2}
+                        shininess={16}
                     >
                         <texture url={'earth.jpg'} magFilter={THREE.LinearFilter} minFilter={THREE.LinearFilter} slot={'map'}/>
                         <texture url={'earth-bump.jpg'} magFilter={THREE.LinearFilter} minFilter={THREE.LinearFilter} slot={'bumpMap'}/>
@@ -99,7 +102,7 @@ class Planet extends React.Component {
                         height={300}
                     />
                     <meshBasicMaterial transparent={true}>
-                        <texture anisotropy={8} url={'globe-topglow.png'} magFilter={THREE.NearestFilter} minFilter={THREE.LinearMipMapNearestFilter}/>
+                        <texture offset={this.state.glowOffset} anisotropy={8} url={'globe-topglow.png'} magFilter={THREE.NearestFilter} minFilter={THREE.LinearMipMapNearestFilter}/>
                     </meshBasicMaterial>
                 </mesh>
             </scene>

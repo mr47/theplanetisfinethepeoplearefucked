@@ -25,9 +25,6 @@ class Layout extends React.Component {
                 <div className="planet">
                     <Planet />
                 </div>
-                <div style={{ width: `${this.state.width}px`, height: `${this.state.height}px` }}>
-                    <div className="top-glow" />
-                </div>
             </div>
         );
     }

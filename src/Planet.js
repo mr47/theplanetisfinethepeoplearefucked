@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom'
 import * as THREE from 'three';
 
 import './OrbitControls'
+/*
 import './EffectComposer'
 import './ShaderPass'
 import './CopyShader'
 import './FilmShader'
 import './FilmPass'
-
+*/
 import React3 from 'react-three-renderer'
 
 
@@ -53,10 +54,10 @@ class Planet extends React.Component {
                     0
                 ),
             });
-            this.composer.render(0.1);
+//            this.composer.render(0.1);
         };
         this._onRendererUpdated = (renderer)=>{
-            this.composer = new THREE.EffectComposer( renderer, new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, this.state.rtParameters ) );
+  //          this.composer = new THREE.EffectComposer( renderer, new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, this.state.rtParameters ) );
         };
 
     }
